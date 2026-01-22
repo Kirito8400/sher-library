@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>RekhtaVerse</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -17,16 +17,26 @@
               ui: ['"Inter"', 'sans-serif'],
             },
             colors: {
-              primary: {
-                50: '#fdf4ff',
-                100: '#fae8ff',
-                500: '#d946ef',
-                600: '#c026d3',
-                700: '#a21caf',
-                900: '#701a75',
-              },
-              paper: '#f8f5f2',
-              ink: '#2d2a2e',
+              mystic: {
+                950: '#050403', // Deepest background
+                900: '#0f0b08', // Page background
+                800: '#1c1612', // Card background
+                700: '#2e241d', // Lighter elements
+                600: '#4a3b32', // Borders
+                gold: '#d4af37', // Ornament gold
+                light: '#e6dfc8', // Text
+                dim: '#9c8c74',   // Secondary text
+                magic: '#00f0ff', // AI Magic glow
+              }
+            },
+            boxShadow: {
+              'glow-gold': '0 0 15px -3px rgba(212, 175, 55, 0.3)',
+              'glow-magic': '0 0 20px -5px rgba(0, 240, 255, 0.4)',
+              'inner-gold': 'inset 0 0 20px -10px rgba(212, 175, 55, 0.2)',
+            },
+            backgroundImage: {
+              'scroll-gradient': 'linear-gradient(135deg, #1c1612 0%, #14100b 100%)',
+              'gold-gradient': 'linear-gradient(45deg, #d4af37, #f3e5ab, #d4af37)',
             }
           }
         }
@@ -41,6 +51,23 @@
       .no-scrollbar {
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
+      }
+      
+      body {
+        background-color: #0f0b08;
+        color: #e6dfc8;
+      }
+
+      .ornament-border {
+        position: relative;
+      }
+      .ornament-border::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: inherit;
+        pointer-events: none;
       }
     </style>
   <script type="importmap">
@@ -57,7 +84,7 @@
 }
 </script>
 </head>
-  <body class="bg-paper text-ink dark:bg-zinc-900 dark:text-zinc-100 antialiased font-ui selection:bg-primary-500 selection:text-white">
+  <body class="bg-mystic-900 text-mystic-light antialiased font-ui selection:bg-mystic-gold selection:text-mystic-950">
     <div id="root"></div>
   </body>
 </html>

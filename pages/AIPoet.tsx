@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Loader2, RefreshCw } from 'lucide-react';
+import { Sparkles, Loader2, RefreshCw, Wand2 } from 'lucide-react';
 import { geminiService } from '../services/geminiService';
 
 const AIPoet: React.FC = () => {
@@ -16,42 +16,44 @@ const AIPoet: React.FC = () => {
         const data = await geminiService.generateShayari(mood, language);
         setResult(data);
     } catch (e) {
-        alert("Failed to generate poetry. Please try again.");
+        alert("The magic faded. Please try again.");
     } finally {
         setLoading(false);
     }
   };
 
   return (
-    <div className="pb-24 pt-8 px-4 max-w-md mx-auto min-h-screen">
-      <div className="text-center mb-8">
-        <div className="w-16 h-16 bg-gradient-to-tr from-primary-500 to-purple-600 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-lg shadow-primary-500/30">
-            <Sparkles className="text-white" size={32} />
+    <div className="pb-32 pt-10 px-5 max-w-md mx-auto min-h-screen">
+      <div className="text-center mb-10 relative">
+        <div className="absolute inset-0 bg-mystic-magic/20 blur-[50px] -z-10 rounded-full transform scale-50"></div>
+        <div className="w-16 h-16 border border-mystic-magic/50 rounded-full mx-auto flex items-center justify-center mb-5 shadow-glow-magic bg-mystic-900/50 backdrop-blur-sm">
+            <Wand2 className="text-mystic-magic" size={32} />
         </div>
-        <h1 className="text-2xl font-english font-bold dark:text-white">AI Poet Muse</h1>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-2">Describe a feeling, and I will write a verse for you.</p>
+        <h1 className="text-2xl font-english font-bold text-mystic-light">The Oracle</h1>
+        <p className="text-mystic-dim text-xs uppercase tracking-widest mt-2">Whisper your thoughts to the void</p>
       </div>
 
-      <div className="bg-white dark:bg-zinc-800 p-6 rounded-2xl shadow-sm border border-zinc-100 dark:border-zinc-700 mb-6">
-        <div className="space-y-4">
+      <div className="bg-mystic-800/50 backdrop-blur-sm p-6 rounded-2xl border border-mystic-magic/20 mb-8 relative group">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-mystic-magic/20 to-purple-500/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+        <div className="relative space-y-6">
             <div>
-                <label className="text-xs font-bold uppercase text-zinc-400 mb-2 block">I want to write about...</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-mystic-magic mb-3 block">Essence</label>
                 <textarea 
                     value={mood}
                     onChange={(e) => setMood(e.target.value)}
-                    placeholder="e.g., The rain in Lahore, Missing an old friend, The silence of the night..."
-                    className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 h-24 resize-none dark:text-white"
+                    placeholder="Describe the feeling (e.g., The rain falling on an empty street...)"
+                    className="w-full bg-mystic-950 border border-mystic-magic/20 rounded-xl p-4 text-sm text-mystic-light placeholder-mystic-700 focus:outline-none focus:border-mystic-magic/50 focus:shadow-glow-magic h-32 resize-none transition-all"
                 />
             </div>
             
             <div>
-                <label className="text-xs font-bold uppercase text-zinc-400 mb-2 block">Language</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-mystic-magic mb-3 block">Tongue</label>
                 <div className="flex gap-2">
                     {['Urdu', 'Hindi', 'English'].map(lang => (
                         <button
                             key={lang}
                             onClick={() => setLanguage(lang)}
-                            className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${language === lang ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-900' : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300'}`}
+                            className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${language === lang ? 'bg-mystic-magic text-mystic-950 shadow-glow-magic' : 'bg-mystic-950 text-mystic-dim border border-mystic-magic/10 hover:border-mystic-magic/30'}`}
                         >
                             {lang}
                         </button>
@@ -62,30 +64,31 @@ const AIPoet: React.FC = () => {
             <button 
                 onClick={handleGenerate}
                 disabled={loading || !mood}
-                className="w-full bg-primary-600 hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary-500/20"
+                className="w-full bg-gradient-to-r from-mystic-magic to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed text-mystic-950 font-bold uppercase tracking-widest py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-cyan-900/20"
             >
                 {loading ? <Loader2 className="animate-spin" size={20} /> : <Sparkles size={20} />}
-                <span>{loading ? 'Composing...' : 'Generate Verse'}</span>
+                <span>{loading ? 'Conjuring...' : 'Manifest Verse'}</span>
             </button>
         </div>
       </div>
 
       {result && (
-        <div className="animate-in fade-in slide-in-from-bottom duration-500">
-            <div className="bg-paper dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 p-8 rounded-2xl text-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50"></div>
+        <div className="animate-in fade-in slide-in-from-bottom duration-700">
+            <div className="bg-mystic-800 p-8 rounded-xl text-center relative overflow-hidden border border-mystic-magic/30 shadow-glow-magic">
+                {/* Magic glow background */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-mystic-magic shadow-[0_0_20px_#00f0ff]"></div>
                 
-                <span className="inline-block px-3 py-1 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-[10px] font-bold uppercase tracking-wider mb-4">
-                    {result.style} Style
+                <span className="inline-block px-3 py-1 rounded-full border border-mystic-magic/30 text-mystic-magic text-[10px] font-bold uppercase tracking-widest mb-6">
+                    {result.style}
                 </span>
                 
-                <p className="font-urdu text-xl md:text-2xl leading-loose text-zinc-800 dark:text-zinc-100 whitespace-pre-line mb-6">
+                <p className="font-urdu text-xl md:text-2xl leading-[2.2] text-mystic-light whitespace-pre-line mb-8 drop-shadow-md">
                     {result.content}
                 </p>
 
                 {result.translation && (
-                    <div className="border-t border-zinc-200 dark:border-zinc-700 pt-4">
-                        <p className="text-zinc-500 dark:text-zinc-400 text-sm italic font-english">
+                    <div className="border-t border-mystic-magic/10 pt-6">
+                        <p className="text-mystic-dim text-sm italic font-english">
                             "{result.translation}"
                         </p>
                     </div>
@@ -94,9 +97,9 @@ const AIPoet: React.FC = () => {
             
             <button 
                 onClick={() => setResult(null)}
-                className="mx-auto mt-4 text-zinc-400 flex items-center gap-2 text-sm hover:text-zinc-600 dark:hover:text-zinc-200"
+                className="mx-auto mt-6 text-mystic-dim flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-mystic-magic transition-colors"
             >
-                <RefreshCw size={14} /> Create Another
+                <RefreshCw size={14} /> Recast Spell
             </button>
         </div>
       )}

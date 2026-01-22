@@ -14,14 +14,17 @@ const AppContent: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-paper dark:bg-zinc-900 text-ink dark:text-zinc-100 font-ui transition-colors duration-200">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/create" element={<AIPoet />} />
-          <Route path="/shayari/:id" element={<ShayariDetail />} />
-        </Routes>
+      <div className="min-h-screen bg-mystic-900 text-mystic-light font-ui transition-colors duration-200">
+        <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05),transparent_70%)] z-0"></div>
+        <div className="relative z-10">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/create" element={<AIPoet />} />
+            <Route path="/shayari/:id" element={<ShayariDetail />} />
+          </Routes>
+        </div>
       </div>
       {!hideNav && <Navigation />}
     </>
